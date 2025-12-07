@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Amino Acids & Proteins — EL5 → Med → BIS</title>
+
+  <!-- Typography -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+
+  <style>
+    :root {
+      --bg: #05050b;
+      --bg-alt: #0b0b16;
+      --card-bg: #111222;
+      --border-soft: #232445;
+      --text-main: #f7f7ff;
+      --text-muted: #b9bbd9;
+      --accent-aa: #b285ff;    /* 🟣 Amino Acids */
+      --accent-prot: #5da9ff;  /* 🔵 Proteins   */
+      --accent-energy: #5ad49a;/* 🟢 Energy     */
+      --accent-signal: #ffd76a;/* 🟡 Signaling  */
+      --accent-enz: #ff9ecb;   /* Enzymes */
+      --accent-code: #1b2238;
+      --blockquote-bg: #14142a;
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.6);
+      --radius-lg: 18px;
+      --radius-pill: 999px;
+      --max-width: 920px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #1b1533 0, #05050b 45%, #020309 100%);
+      color: var(--text-main);
+      display: flex;
+      justify-content: center;
+    }
+
+    main {
+      max-width: var(--max-width);
+      width: 100%;
+      padding: 28px 20px 60px;
+    }
+
+    .page-card {
+      background: linear-gradient(145deg, #0c0d1a 0%, #05050b 55%, #101328 100%);
+      border-radius: 24px;
+      padding: 26px 22px 30px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    h1, h2, h3, h4 {
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      margin-top: 0;
+    }
+
+    h1 {
+      font-size: 2.1rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.4rem;
+    }
+
+    h1 strong {
+      background: linear-gradient(90deg, #b285ff, #5da9ff, #ffd76a);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 1.2rem;
+    }
+
+    h2 {
+      margin-top: 2rem;
+      margin-bottom: 0.5rem;
+      font-size: 1.4rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 4px 14px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      background: rgba(5, 5, 11, 0.6);
+    }
+
+    h2 span.tag {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+    }
+
+    h2[data-sec="aa"] {
+      border-color: rgba(178, 133, 255, 0.7);
+      color: var(--accent-aa);
+      background: radial-gradient(circle at left, rgba(178, 133, 255, 0.18), transparent 55%);
+    }
+
+    h2[data-sec="prot"] {
+      border-color: rgba(93, 169, 255, 0.7);
+      color: var(--accent-prot);
+      background: radial-gradient(circle at left, rgba(93, 169, 255, 0.18), transparent 55%);
+    }
+
+    h2[data-sec="enz"] {
+      border-color: rgba(255, 158, 203, 0.7);
+      color: var(--accent-enz);
+      background: radial-gradient(circle at left, rgba(255, 158, 203, 0.18), transparent 55%);
+    }
+
+    h2[data-sec="signal"] {
+      border-color: rgba(255, 215, 106, 0.7);
+      color: var(--accent-signal);
+      background: radial-gradient(circle at left, rgba(255, 215, 106, 0.18), transparent 55%);
+    }
+
+    h2[data-sec="struct"] {
+      border-color: rgba(93, 169, 255, 0.4);
+      color: #a7c5ff;
+      background: radial-gradient(circle at left, rgba(93, 169, 255, 0.12), transparent 55%);
+    }
+
+    h2[data-sec="energy"] {
+      border-color: rgba(90, 212, 154, 0.7);
+      color: var(--accent-energy);
+      background: radial-gradient(circle at left, rgba(90, 212, 154, 0.18), transparent 55%);
+    }
+
+    p {
+      color: var(--text-main);
+      line-height: 1.6;
+      font-size: 0.97rem;
+      margin: 0.5rem 0;
+    }
+
+    ul, ol {
+      margin: 0.2rem 0 0.8rem 1.2rem;
+      padding-left: 0.9rem;
+    }
+
+    li {
+      margin: 0.18rem 0;
+      font-size: 0.95rem;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border-soft);
+      margin: 1.6rem 0;
+    }
+
+    blockquote {
+      margin: 1rem 0;
+      padding: 0.8rem 1rem;
+      border-left: 3px solid var(--accent-aa);
+      background: var(--blockquote-bg);
+      border-radius: 10px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    blockquote strong {
+      color: var(--accent-aa);
+    }
+
+    pre {
+      background: var(--accent-code);
+      color: #f4f4ff;
+      padding: 10px 12px;
+      border-radius: 10px;
+      font-family: "JetBrains Mono", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 0.85rem;
+      overflow-x: auto;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.6);
+      margin: 0.6rem 0 0.9rem;
+    }
+
+    /* Simple top nav */
+    .top-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .top-nav a {
+      text-decoration: none;
+      font-size: 0.82rem;
+      padding: 3px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      color: var(--text-muted);
+      transition: background 0.15s ease, color 0.15s ease, transform 0.1s ease;
+    }
+
+    .top-nav a:hover {
+      transform: translateY(-1px);
+    }
+
+    .nav-aa:hover { background: rgba(178, 133, 255, 0.16); color: var(--accent-aa); }
+    .nav-prot:hover { background: rgba(93, 169, 255, 0.16); color: var(--accent-prot); }
+    .nav-enz:hover { background: rgba(255, 158, 203, 0.16); color: var(--accent-enz); }
+    .nav-signal:hover { background: rgba(255, 215, 106, 0.16); color: var(--accent-signal); }
+    .nav-struct:hover { background: rgba(93, 169, 255, 0.12); color: #a7c5ff; }
+    .nav-energy:hover { background: rgba(90, 212, 154, 0.16); color: var(--accent-energy); }
+    .nav-final:hover { background: rgba(255, 215, 106, 0.16); color: var(--accent-signal); }
+
+    .final-box {
+      margin-top: 2rem;
+      border-radius: 18px;
+      padding: 14px 16px 16px;
+      background: radial-gradient(circle at top left, rgba(255, 215, 106, 0.18), rgba(5, 5, 11, 0.9));
+      border: 1px solid rgba(255, 215, 106, 0.45);
+    }
+
+    .final-box h2 {
+      margin-top: 0;
+    }
+
+    @media (max-width: 780px) {
+      .page-card {
+        padding: 20px 16px 26px;
+        border-radius: 18px;
+      }
+      main {
+        padding: 18px 12px 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="page-card">
+
+      <h1>🧬 <strong>Amino Acids &amp; Proteins</strong></h1>
+      <p class="subtitle">
+        EL5 + Med + Bioinformatics — a unified field guide for your future AI bioinformatics scientist brain.
+      </p>
+
+      <nav class="top-nav">
+        <a class="nav-aa" href="#aa">🟣 1️⃣ Amino Acids</a>
+        <a class="nav-prot" href="#proteins">🔵 2️⃣ Proteins</a>
+        <a class="nav-enz" href="#enzymes">🍳 3️⃣ Catalysts</a>
+        <a class="nav-signal" href="#signaling">🟡 4️⃣ Signaling</a>
+        <a class="nav-struct" href="#structure">🏗️ 5️⃣ Structure</a>
+        <a class="nav-energy" href="#energy">🟢 6️⃣ Energy</a>
+        <a class="nav-final" href="#final">🔥 Summary</a>
+      </nav>
+
+      <hr/>
+
+      <!-- 1️⃣ Amino Acids -->
+      <h2 id="aa" data-sec="aa">1️⃣ Amino Acids <span class="tag">core bricks</span></h2>
+
+      <h3>What they are (EL5 + med)</h3>
+      <p>Amino acids are <strong>20 little LEGO people with different hats</strong>.<br/>
+      You snap them together into long chains; the hats decide how they behave:</p>
+
+      <ul>
+        <li>shy vs loud (hydrophobic vs hydrophilic)</li>
+        <li>sticky vs slippery (charged vs neutral)</li>
+        <li>bendy vs stiff (glycine vs proline)</li>
+        <li>good at passing protons, making bonds, or getting tagged</li>
+      </ul>
+
+      <p>Each amino acid has the same body plan:</p>
+      <ul>
+        <li><strong>α-carbon</strong> (central carbon)</li>
+        <li><strong>Amino group</strong> (–NH₃⁺ at physiological pH)</li>
+        <li><strong>Carboxyl group</strong> (–COO⁻ at physiological pH)</li>
+        <li><strong>Hydrogen</strong></li>
+        <li><strong>R-group / side chain</strong> → this is the “hat” that changes everything</li>
+      </ul>
+
+      <p>The <strong>R-group</strong> determines:</p>
+      <ul>
+        <li>hydrophobic vs hydrophilic behavior</li>
+        <li>charge at biological pH (positive, negative, neutral)</li>
+        <li>ability to form hydrogen bonds</li>
+        <li>whether it can form special bonds (e.g., disulfide)</li>
+        <li>whether it is a good site for post-translational mods (phosphorylation, glycosylation, methylation, etc.)</li>
+      </ul>
+
+      <h3>High-yield categories</h3>
+
+      <p><strong>Hydrophobic (tend to bury inside proteins):</strong><br/>
+      Val, Leu, Ile, Met, Phe, Trp, Pro, Ala</p>
+
+      <p><strong>Polar uncharged (like water, often on surfaces or in active sites):</strong><br/>
+      Ser, Thr, Asn, Gln, Tyr, Cys</p>
+
+      <p><strong>Basic (+ charge at physiological pH):</strong><br/>
+      Lys, Arg, His</p>
+
+      <p><strong>Acidic (– charge):</strong><br/>
+      Asp, Glu</p>
+
+      <h3>Special players (EL5 notes baked in)</h3>
+
+      <ul>
+        <li><strong>Glycine</strong> – smallest; like a tiny hinge → adds flexibility</li>
+        <li><strong>Proline</strong> – rigid ring; breaks α-helices, creates kinks/turns → “kink brick”</li>
+        <li><strong>Cysteine</strong> – can form <strong>disulfide bonds (S–S)</strong> → molecular safety pins that lock structure</li>
+        <li><strong>Histidine</strong> – pKa near physiological pH → perfect for <strong>acid/base catalysis</strong> in active sites (proton relay friend)</li>
+        <li><strong>Ser/Thr/Tyr</strong> – favorite targets for <strong>phosphorylation</strong> → on/off switches in signaling</li>
+      </ul>
+
+      <blockquote>
+        <strong>EL5 translation:</strong> Some LEGO people are tiny acrobats (Gly), some are stiff elbows (Pro), some can form handcuffs with each other (Cys), some are proton tossers in enzyme reactions (His), and some are “switch bricks” that the cell can tag with phosphate flags (Ser/Thr/Tyr).
+      </blockquote>
+
+      <h3>Bioinformatics (BIS lens)</h3>
+      <ul>
+        <li>Amino acid properties (size, charge, polarity) form the basis of <strong>substitution matrices</strong> (PAM, BLOSUM).</li>
+        <li>Conservation patterns in multiple sequence alignments point to:
+          <ul>
+            <li>conserved <strong>catalytic residues</strong> (often D, E, H, K, S, C)</li>
+            <li>conserved <strong>binding motifs</strong> (e.g., HxH, HxGH in metal-binding sites)</li>
+          </ul>
+        </li>
+        <li>Hydrophobic stretches of amino acids help predict:
+          <ul>
+            <li><strong>transmembrane helices</strong> (hydropathy plots)</li>
+            <li><strong>signal peptides</strong> (N-terminal hydrophobic patches)</li>
+          </ul>
+        </li>
+        <li>Post-translational modification sites are often predictable by motifs:
+          <ul>
+            <li>e.g. <strong>Ser/Thr</strong> in consensus sequences for kinases, <strong>N-X-S/T</strong> for N-glycosylation</li>
+          </ul>
+        </li>
+        <li>Features like disorder vs order, low complexity regions, and repeat motifs are all encoded at the amino acid level and matter for:
+          <ul>
+            <li>phase separation</li>
+            <li>signaling hubs</li>
+            <li>intrinsically disordered regions (IDRs)</li>
+          </ul>
+        </li>
+      </ul>
+
+      <hr/>
+
+      <!-- 2️⃣ Proteins -->
+      <h2 id="proteins" data-sec="prot">2️⃣ Proteins: The Workers <span class="tag">folded tools</span></h2>
+
+      <h3>What proteins are (EL5)</h3>
+      <p>Proteins are the <strong>workers of the cell city</strong>.</p>
+      <ul>
+        <li>DNA = recipe book</li>
+        <li>mRNA = copied recipe</li>
+        <li>Ribosome = kitchen</li>
+        <li>Amino acids = ingredients</li>
+        <li>Protein = finished worker (folded tool/robot)</li>
+      </ul>
+      <p>The chain of amino acids folds into a shape that decides <strong>what job</strong> the protein does.</p>
+
+      <h3>Structure levels (med + BIS)</h3>
+      <ol>
+        <li><strong>Primary:</strong> linear sequence of amino acids</li>
+        <li><strong>Secondary:</strong> local patterns like <strong>α-helices</strong> and <strong>β-sheets</strong></li>
+        <li><strong>Tertiary:</strong> full 3D folding of a single chain</li>
+        <li><strong>Quaternary:</strong> multiple chains assembling (dimers, tetramers, etc.)</li>
+      </ol>
+
+      <p>Folding is driven by:</p>
+      <ul>
+        <li>hydrophobic collapse</li>
+        <li>hydrogen bonds</li>
+        <li>electrostatic interactions</li>
+        <li>van der Waals forces</li>
+        <li>disulfide bonds (Cys–Cys)</li>
+      </ul>
+
+      <p><strong>Bioinformatics connection:</strong></p>
+      <ul>
+        <li>Tools like AlphaFold2 predict <strong>3D structure</strong> from the <strong>primary sequence</strong>, exploiting evolutionary covariation.</li>
+        <li>Conservation + structure highlights:
+          <ul>
+            <li>active sites</li>
+            <li>binding pockets</li>
+            <li>interface surfaces</li>
+          </ul>
+        </li>
+        <li>Misfolding → disease (e.g., amyloids, CFTR ΔF508, etc.).</li>
+      </ul>
+
+      <blockquote>
+        <strong>EL5 translation:</strong> You start with a string of beads, then it crumples into a very specific origami creature that can only do its job if the folds are just right.
+      </blockquote>
+
+      <hr/>
+
+      <!-- 3️⃣ Job 1 — Catalysts -->
+      <h2 id="enzymes" data-sec="enz">3️⃣ Job 1 — Catalysts (Enzymes) <span class="tag">🍳 cooks</span></h2>
+
+      <h3>EL5 anchor</h3>
+      <p>Enzymes are <strong>cooks</strong> that make chemical reactions go fast.<br/>
+      They have tiny pockets (<strong>active sites</strong>) that hug ingredients (<strong>substrates</strong>), lower the “effort hill” (activation energy), and let reactions happen quickly—without getting used up.</p>
+
+      <h3>Active site (med + BIS)</h3>
+      <ul>
+        <li>3D pocket with <strong>specific shape</strong> and <strong>chemical environment</strong>.</li>
+        <li>Often lined with amino acids that:
+          <ul>
+            <li>donate/accept protons (His, Asp, Glu, Lys)</li>
+            <li>act as nucleophiles (Ser, Cys)</li>
+            <li>stabilize charged intermediates (Arg, Lys)</li>
+          </ul>
+        </li>
+        <li>Frequently designed to bind and stabilize the <strong>transition state</strong> more than the substrate itself.</li>
+      </ul>
+
+      <p>Mutations in active site residues often cause:</p>
+      <ul>
+        <li>loss of function</li>
+        <li>metabolic disease (e.g., enzyme deficiencies like PKU)</li>
+      </ul>
+
+      <p><strong>Bioinformatics notes:</strong></p>
+      <ul>
+        <li>Active sites often show:
+          <ul>
+            <li><strong>strong conservation</strong> across homologs</li>
+            <li>clustered catalytic residues in 3D space</li>
+          </ul>
+        </li>
+        <li>Can be detected/annotated using:
+          <ul>
+            <li>structural alignment to known enzymes</li>
+            <li>motif searches (e.g., HExGH, HxH, HxD patterns)</li>
+            <li>databases like CSA / MACiE (for catalytic site annotation)</li>
+          </ul>
+        </li>
+      </ul>
+
+      <blockquote>
+        <strong>EL5 translation:</strong> The active site is the exact-shaped mouth the cook uses to bite, hold, and transform the food.
+      </blockquote>
+
+      <hr/>
+
+      <h3>Allosteric Site &amp; Regulation (extra pocket, extra magic)</h3>
+
+      <h4>EL5 anchor</h4>
+      <p>An allosteric site is a <strong>second pocket</strong> on the enzyme—far from the main working pocket—where a molecule can sit and <strong>change the enzyme’s mood</strong>.</p>
+      <ul>
+        <li>Happy sticker in that pocket → enzyme works <strong>faster</strong> (activation)</li>
+        <li>Grumpy sticker → enzyme works <strong>slower</strong> (inhibition)</li>
+      </ul>
+      <p>Allosteric = “other shape/place.”<br/>
+      Something binds somewhere else → the whole protein <strong>changes shape</strong> → activity shifts.</p>
+
+      <h4>Structural &amp; mechanistic reality (BIS + med)</h4>
+      <ul>
+        <li>Allosteric sites are:
+          <ul>
+            <li><strong>topographically distinct</strong> cavities</li>
+            <li>often at <strong>domain</strong> or <strong>subunit interfaces</strong></li>
+            <li>connected to the active site via <strong>long-range conformational networks</strong></li>
+          </ul>
+        </li>
+        <li>Binding at an allosteric site causes:
+          <ul>
+            <li>residue interaction network re-weighting</li>
+            <li>changes in hydrogen bond networks</li>
+            <li>disulfide switching (in some proteins)</li>
+            <li>helix re-packing or β-sheet shearing</li>
+            <li>shift between <strong>T-state</strong> (tense / inactive) and <strong>R-state</strong> (relaxed / active)</li>
+          </ul>
+        </li>
+      </ul>
+
+      <p>Types of allosteric regulation:</p>
+      <ol>
+        <li><strong>Homotropic</strong> — substrate itself is the effector (e.g., O₂ in hemoglobin)</li>
+        <li><strong>Heterotropic</strong> — different molecule is the effector (e.g., ATP inhibiting PFK-1)</li>
+        <li><strong>Positive / Negative</strong> — stabilizes active vs inactive conformations</li>
+        <li><strong>Conformational selection vs induced fit</strong> — pre-existing ensemble vs ligand-driven change</li>
+      </ol>
+
+      <p>Enzymes with allostery often show:</p>
+      <ul>
+        <li><strong>sigmoidal (S-shaped) kinetics</strong> instead of hyperbolic</li>
+        <li><strong>cooperativity</strong> between subunits (when one subunit binds/activates, neighbors are more likely to activate)</li>
+      </ul>
+
+      <blockquote>
+        <strong>EL5 slide metaphor:</strong> One kid goes down the slide → next kid thinks “that looks fun!” → more kids join → the curve of “kids using slide vs time” looks S-shaped, not a straight line.
+      </blockquote>
+
+      <h4>Metabolic and clinical importance</h4>
+      <p>Allosteric enzymes are often <strong>control points</strong> in pathways:</p>
+      <ul>
+        <li><strong>PFK-1</strong> in glycolysis:
+          <ul>
+            <li>ATP = grumpy sticker (inhibits)</li>
+            <li>AMP, F2,6BP = happy stickers (activate)</li>
+          </ul>
+        </li>
+        <li><strong>Pyruvate kinase</strong>:
+          <ul>
+            <li>ATP inhibits</li>
+            <li>F1,6BP activates</li>
+          </ul>
+        </li>
+      </ul>
+      <p>They act as <strong>traffic lights</strong>:</p>
+      <ul>
+        <li>Green = pathway flows</li>
+        <li>Red = pathway slows or stops</li>
+      </ul>
+      <p>Dysregulation → metabolic disease, cancer, inborn errors.</p>
+
+      <h4>Bioinformatics &amp; AI angle</h4>
+      <ul>
+        <li>Allosteric sites tend to:
+          <ul>
+            <li>be <strong>less conserved</strong> than active sites (good drug targets)</li>
+            <li>show <strong>co-evolving residues</strong> (correlated mutations)</li>
+            <li>have high <strong>network centrality</strong> in residue interaction graphs</li>
+            <li>appear as <strong>cryptic pockets</strong> in MD simulations (not obvious in static structures)</li>
+          </ul>
+        </li>
+        <li>Tools / approaches:
+          <ul>
+            <li>Pocket detection: fpocket, SiteMap, DoGSite</li>
+            <li>Dynamics: MD + ENM/ANM, normal mode analysis, Markov state models</li>
+            <li>Coevolution: EVcouplings, GREMLIN</li>
+            <li>Conformational impact: DynaMut, ENCoM</li>
+            <li>ML: models to predict allosteric sites and ligands for drug discovery</li>
+          </ul>
+        </li>
+      </ul>
+
+      <blockquote>
+        <strong>EL5 translation:</strong> You can find the secret mood pocket by looking at which parts of the protein wiggle together or change together in evolution.
+      </blockquote>
+
+      <hr/>
+
+      <!-- 4️⃣ Job 2 — Signaling -->
+      <h2 id="signaling" data-sec="signal">4️⃣ Job 2 — Signaling <span class="tag">doorbells &amp; radios</span></h2>
+
+      <h3>EL5 anchor</h3>
+      <p>Signaling proteins are <strong>doorbells, radios, and walkie-talkies</strong>.</p>
+      <p>One protein shouts “HEY!”<br/>
+      Another hears it and changes what the cell does.<br/>
+      Sometimes the message spreads into a whole <strong>cascade</strong> and ends up changing gene expression.</p>
+
+      <h3>GPCRs (G-Protein Coupled Receptors)</h3>
+
+      <h4>EL5 house metaphor</h4>
+      <ul>
+        <li>Cell = house</li>
+        <li>GPCR = <strong>doorbell snake</strong> in the wall (7 times in/out → 7 helices)</li>
+        <li>Ligand (hormone, neurotransmitter) = someone pressing the doorbell</li>
+        <li>Inside: <strong>G-protein robot</strong> with:
+          <ul>
+            <li>alpha arm</li>
+            <li>beta leg</li>
+            <li>gamma leg</li>
+          </ul>
+        </li>
+      </ul>
+      <p>Doorbell press → snake wiggles → robot wakes → splits and pushes buttons inside (make cAMP, open Ca²⁺ doors, etc.).<br/>
+      If it’s pressed too often, the house gets annoyed, slaps “shame stickers” (phosphates) on the doorbell, and the babysitter (β-arrestin) drags it inside = <strong>desensitization</strong>.</p>
+
+      <h4>Molecular / BIS version</h4>
+      <ul>
+        <li><strong>Structure:</strong>
+          <ul>
+            <li>7-transmembrane α-helices</li>
+            <li>EC N-terminus (often for ligand binding)</li>
+            <li>IC C-terminus (interacts with G-proteins, GRKs, β-arrestins)</li>
+            <li>Conserved motifs: <strong>DRY</strong> on helix 3, <strong>NPxxY</strong> on helix 7</li>
+          </ul>
+        </li>
+        <li><strong>Activation sequence:</strong>
+          <ul>
+            <li>Ligand binding → conformational change</li>
+            <li>Gα releases GDP → binds GTP</li>
+            <li>Gα–GTP dissociates from Gβγ</li>
+            <li>Both Gα–GTP and Gβγ regulate effectors (enzymes, ion channels)</li>
+            <li>GTP hydrolysis returns Gα to GDP-bound inactive state → reassociation</li>
+          </ul>
+        </li>
+        <li><strong>Gα families:</strong>
+          <ul>
+            <li><strong>Gs</strong> → activates adenylyl cyclase → ↑cAMP → PKA</li>
+            <li><strong>Gi/o</strong> → inhibits adenylyl cyclase → ↓cAMP</li>
+            <li><strong>Gq/11</strong> → activates PLC-β → PIP₂ → IP₃ + DAG → Ca²⁺ + PKC</li>
+            <li><strong>G12/13</strong> → Rho GTPase signaling (cytoskeleton, migration)</li>
+          </ul>
+        </li>
+        <li><strong>Desensitization:</strong>
+          <ul>
+            <li>GRKs phosphorylate active GPCR</li>
+            <li>β-arrestin binds phosphorylated tail</li>
+            <li>Receptor internalized via clathrin-coated pits</li>
+            <li>Recycled or degraded</li>
+            <li>Explains drug tolerance (e.g., opioids, β-agonists)</li>
+          </ul>
+        </li>
+      </ul>
+
+      <p><strong>Bioinformatics notes:</strong></p>
+      <ul>
+        <li>GPCRs are easily detected from sequence via:
+          <ul>
+            <li>7-TM domain architecture</li>
+            <li>Class-specific motifs</li>
+          </ul>
+        </li>
+        <li>Families classified into Class A/B/C etc.</li>
+        <li>ML + AlphaFold + MD used to:
+          <ul>
+            <li>predict active vs inactive conformations</li>
+            <li>identify ligand binding pockets and allosteric sites</li>
+          </ul>
+        </li>
+        <li>Biased signaling (G-protein vs β-arrestin pathways) is linked to specific conformational ensembles.</li>
+      </ul>
+
+      <hr/>
+
+      <h3>Receptor Tyrosine Kinases (RTKs)</h3>
+
+      <h4>EL5 anchor</h4>
+      <p>RTKs are <strong>“grow and survive” doorbells</strong>.<br/>
+      Two receptors hug each other when the ligand binds, then start adding phosphate “power stickers” to their own tails and recruit signaling teams.</p>
+
+      <h4>Med + BIS</h4>
+      <ul>
+        <li><strong>Structure:</strong>
+          <ul>
+            <li>Extracellular ligand-binding domain</li>
+            <li>Single transmembrane helix</li>
+            <li>Intracellular tyrosine kinase domain (with activation loop and conserved motifs: DFG, HRD, APE, VAIK)</li>
+          </ul>
+        </li>
+        <li><strong>Activation:</strong>
+          <ol>
+            <li>Ligand binding → receptors dimerize</li>
+            <li><strong>Trans-autophosphorylation</strong> of tyrosine residues</li>
+            <li>Phosphotyrosines become <strong>docking sites</strong> for SH2/PTB-domain proteins</li>
+            <li>Canonical cascade: RTK → GRB2 → SOS → RAS–GTP → RAF → MEK → ERK → transcription factors (ELK1, c-Fos)</li>
+          </ol>
+        </li>
+        <li><strong>Examples:</strong>
+          <ul>
+            <li>Insulin receptor (pre-formed dimer; uses IRS proteins → PI3K → AKT → mTOR)</li>
+            <li>EGFR (mutations in cancer; targeted by TKIs)</li>
+            <li>VEGFR (angiogenesis)</li>
+          </ul>
+        </li>
+      </ul>
+
+      <p><strong>Bioinformatics view:</strong></p>
+      <ul>
+        <li>RTKs are identified by <strong>Pfam tyrosine kinase domains (PF07714)</strong>.</li>
+        <li>Somatic mutations in RTKs are common in cancer; bioinformatics pipelines:
+          <ul>
+            <li>identify driver mutations (e.g., EGFR L858R)</li>
+            <li>map them to kinase domain structures</li>
+            <li>predict drug resistance (e.g., T790M)</li>
+          </ul>
+        </li>
+      </ul>
+
+      <hr/>
+
+      <h3>Ligand-Gated Ion Channels (LGICs)</h3>
+
+      <h4>EL5 anchor</h4>
+      <p>These are <strong>fast doors</strong>.<br/>
+      A neurotransmitter is the key; it binds, door opens, ions rush in or out → the electrical mood of the cell changes instantly.</p>
+
+      <h4>Med + BIS</h4>
+      <ul>
+        <li><strong>Structure:</strong>
+          <ul>
+            <li>Often pentameric (nicotinic ACh, GABA-A) or tetrameric (NMDA)</li>
+            <li>Pore-forming transmembrane helices</li>
+            <li>Ligand-binding EC domain</li>
+          </ul>
+        </li>
+        <li><strong>Mechanism:</strong>
+          <ul>
+            <li>Ligand binds</li>
+            <li>Conformational change → gate opens</li>
+            <li>Ion flux changes membrane potential</li>
+          </ul>
+        </li>
+        <li><strong>Examples:</strong>
+          <ul>
+            <li>GABA-A: Cl⁻ influx → hyperpolarization (inhibition)</li>
+            <li>NMDA: Na⁺/Ca²⁺ influx; requires depolarization + co-agonist; blocked by Mg²⁺ at rest</li>
+            <li>Nicotinic ACh: Na⁺ influx → depolarization</li>
+          </ul>
+        </li>
+      </ul>
+
+      <p><strong>Bioinformatics:</strong></p>
+      <ul>
+        <li>Key motifs:
+          <ul>
+            <li>K⁺ channels: <strong>GYG</strong> in selectivity filter</li>
+            <li>Ionotropic glutamate receptors: <strong>SYTANLAAF</strong></li>
+          </ul>
+        </li>
+        <li>MD simulations + homology models used to study:
+          <ul>
+            <li>gating motions</li>
+            <li>ion selectivity</li>
+            <li>drug binding (e.g., anesthetics, benzodiazepines)</li>
+          </ul>
+        </li>
+      </ul>
+
+      <hr/>
+
+      <h3>Second Messengers &amp; Signal Amplification</h3>
+
+      <h4>Second messengers (quick list)</h4>
+      <ul>
+        <li><strong>cAMP</strong> – from ATP via adenylyl cyclase; activates PKA; changes gene expression via CREB.</li>
+        <li><strong>cGMP</strong> – via guanylyl cyclase; activates PKG; smooth muscle relaxation; regulated by PDEs.</li>
+        <li><strong>IP₃</strong> – soluble; releases Ca²⁺ from ER via IP₃ receptors.</li>
+        <li><strong>DAG</strong> – membrane-bound; activates PKC.</li>
+        <li><strong>Ca²⁺</strong> – universal; controls contraction, secretion, transcription, etc.</li>
+        <li><strong>NO</strong> – gaseous; diffuses; activates soluble guanylyl cyclase → cGMP.</li>
+      </ul>
+
+      <h4>Amplification (EL5 + BIS)</h4>
+      <p>One ligand → one receptor → many G-proteins → many enzymes → hundreds or thousands of second messengers → many kinases → many phosphorylated targets.</p>
+      <p>Tiny whisper at the membrane → huge chorus inside the cell.</p>
+      <p>In modeling, these are represented via:</p>
+      <ul>
+        <li><strong>cascades</strong></li>
+        <li>ODE systems</li>
+        <li>stoichiometric coefficients</li>
+        <li>network graphs</li>
+      </ul>
+
+      <h4>Gene regulation cross-talk</h4>
+      <p>Signals end up in the nucleus by:</p>
+      <ul>
+        <li>activating transcription factors (CREB, NF-κB, STATs, AP-1)</li>
+        <li>modifying chromatin (acetylation, methylation)</li>
+        <li>altering mRNA stability (AREs, miRNAs)</li>
+        <li>affecting splicing regulators</li>
+      </ul>
+
+      <p><strong>Bioinformatics tools:</strong></p>
+      <ul>
+        <li>motif scanning for TF binding sites</li>
+        <li>ChIP-seq for occupancy</li>
+        <li>RNA-seq for transcriptomic responses</li>
+        <li>network inference for pathway reconstruction</li>
+      </ul>
+
+      <blockquote>
+        <strong>EL5 translation:</strong> Protein doorbells talk to sparkles (second messengers), sparkles talk to light switches on DNA (transcription factors), and then the cell changes what it builds.
+      </blockquote>
+
+      <hr/>
+
+      <!-- 5️⃣ Job 3 — Structure -->
+      <h2 id="structure" data-sec="struct">5️⃣ Job 3 — Structure <span class="tag">beams &amp; ropes</span></h2>
+
+      <h3>EL5 anchor</h3>
+      <p>Structural proteins are the <strong>beams, ropes, and scaffolding</strong> of the cell.<br/>
+      Without them, the cell would sag into soup.</p>
+
+      <h3>Med + BIS</h3>
+      <p>Key examples:</p>
+      <ul>
+        <li><strong>Collagen</strong> – triple helix (Gly–X–Y repeats); provides tensile strength in skin, bone, tendons. Needs vitamin C for proline/lysine hydroxylation.</li>
+        <li><strong>Elastin</strong> – stretchy, crosslinked; in lungs, vessels, skin.</li>
+        <li><strong>Actin</strong> – microfilaments; cell shape, movement, muscle contraction (with myosin).</li>
+        <li><strong>Tubulin</strong> – microtubules; mitotic spindle, vesicle transport (dynein/kinesin), cilia/flagella.</li>
+        <li><strong>Keratins</strong> – intermediate filaments in epithelial cells; structural integrity of skin, hair, nails.</li>
+      </ul>
+
+      <p>Disorders:</p>
+      <ul>
+        <li>Ehlers–Danlos (collagen defects)</li>
+        <li>Osteogenesis imperfecta (Type I collagen)</li>
+        <li>Epidermolysis bullosa (keratin/anchoring defects)</li>
+      </ul>
+
+      <p><strong>Bioinformatics:</strong></p>
+      <ul>
+        <li>Repeats and motifs (Gly–X–Y in collagen, coiled-coil heptad repeats, etc.).</li>
+        <li>Domain families for cytoskeletal proteins (actin-like, tubulin-like, IF domains).</li>
+        <li>Structural prediction and MD used to study mechanical properties.</li>
+      </ul>
+
+      <hr/>
+
+      <!-- 6️⃣ Job 4 — Energy / Gradients -->
+      <h2 id="energy" data-sec="energy">6️⃣ Job 4 — Energy / Gradient Generation <span class="tag">tiny batteries</span></h2>
+
+      <h3>EL5 anchor</h3>
+      <p>Cells make <strong>tiny batteries</strong> by putting a lot of charged ions on one side of a membrane.<br/>
+      Then they let the ions rush back through protein turbines to make <strong>ATP</strong>, the energy candy.</p>
+
+      <h3>Med + BIS</h3>
+
+      <p>Key components:</p>
+      <ul>
+        <li><strong>Na⁺/K⁺-ATPase</strong> – uses ATP to pump 3 Na⁺ out, 2 K⁺ in → maintains membrane potential.</li>
+        <li><strong>Other pumps</strong> – H⁺ pumps in lysosomes, Ca²⁺ pumps in ER and plasma membrane.</li>
+      </ul>
+
+      <p><strong>Electron Transport Chain (ETC):</strong></p>
+      <ul>
+        <li>Inner mitochondrial membrane complexes I–IV:
+          <ul>
+            <li>Accept electrons from NADH/FADH₂</li>
+            <li>Pump protons into intermembrane space</li>
+            <li>Create <strong>proton motive force (PMF)</strong></li>
+          </ul>
+        </li>
+      </ul>
+
+      <p><strong>ATP synthase (Complex V):</strong></p>
+      <ul>
+        <li>Protons flow back down gradient through ATP synthase</li>
+        <li>Rotor turns → conformational changes in catalytic sites</li>
+        <li>ADP + Pi → ATP</li>
+      </ul>
+
+      <p><strong>Secondary active transport:</strong></p>
+      <ul>
+        <li>Uses existing gradients (e.g., Na⁺) to power transport of other solutes (e.g., Na⁺/glucose symporters in gut and kidney).</li>
+      </ul>
+
+      <p>Disorders:</p>
+      <ul>
+        <li>Mitochondrial diseases → impaired oxidative phosphorylation → lactic acidosis, myopathies, neuropathies.</li>
+        <li>Ion gradient disruption → arrhythmias, seizures, muscle weakness.</li>
+      </ul>
+
+      <p><strong>Bioinformatics:</strong></p>
+      <ul>
+        <li>ETC and ATP synthase components are highly conserved; phylogenetics used to study mitochondrial evolution.</li>
+        <li>Pathogenic mutations identified by:
+          <ul>
+            <li>variant calling in mtDNA / nuclear ETC genes</li>
+            <li>structural mapping to predict impact on proton channels, binding sites.</li>
+          </ul>
+        </li>
+      </ul>
+
+      <blockquote>
+        <strong>EL5 translation:</strong> The cell builds a wall, piles ions on one side, then uses the rushing “waterfall” of ions to spin a molecular waterwheel that makes ATP coins.
+      </blockquote>
+
+      <hr/>
+
+      <!-- Final Hybrid Summary -->
+      <section id="final" class="final-box">
+        <h2 data-sec="summary">🔥 Final Hybrid Summary</h2>
+
+        <ul>
+          <li><strong>Amino acids</strong> = tiny LEGO pieces with different hats.</li>
+          <li><strong>Proteins</strong> = folded LEGO workers.</li>
+        </ul>
+
+        <p>They do at least four core jobs:</p>
+        <ol>
+          <li><strong>Catalysts (Enzymes)</strong> – lower activation energy, speed up reactions; active sites and allosteric sites tune their behavior.</li>
+          <li><strong>Signaling</strong> – GPCRs, RTKs, ion channels, second messengers; from membrane whispers to nuclear decisions.</li>
+          <li><strong>Structure</strong> – collagen, elastin, actin, tubulin, keratin; beams, ropes, and scaffolds.</li>
+          <li><strong>Energy/Gradients</strong> – pumps, ETC, ATP synthase; electric batteries and proton waterfalls.</li>
+        </ol>
+
+        <p><strong>EL5:</strong><br/>
+        Cells are cities, proteins are the workers, amino acids are the bricks, and gradients are their batteries.</p>
+
+        <p><strong>BIS:</strong><br/>
+        Everything—from sequence alignments to structural modeling, pathway simulation, and drug design—rests on understanding how these amino-acid-based machines fold, signal, catalyze, scaffold, and harness energy.</p>
+      </section>
+
+    </div>
+  </main>
+</body>
+</html>

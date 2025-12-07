@@ -58,7 +58,17 @@ This GitHub is my raw logbook of experiments, messy notebooks, broken scripts, a
 
 ## 🛠 Tools & Technologies
 
-Python · PyTorch · Biopython · scikit-learn · Pandas · NumPy · PyMOL · AlphaFold · Jupyter · Git · Bash/Linux
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white">
+  <img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=flat&logo=pytorch&logoColor=white">
+  <img src="https://img.shields.io/badge/Biopython-3776AB?style=flat&logo=python&logoColor=white">
+  <img src="https://img.shields.io/badge/scikit--learn-F7931E?style=flat&logo=scikitlearn&logoColor=white">
+  <img src="https://img.shields.io/badge/NumPy-013243?style=flat&logo=numpy&logoColor=white">
+  <img src="https://img.shields.io/badge/Pandas-150458?style=flat&logo=pandas&logoColor=white">
+  <img src="https://img.shields.io/badge/Jupyter-F37626?style=flat&logo=jupyter&logoColor=white">
+  <img src="https://img.shields.io/badge/Git-F05032?style=flat&logo=git&logoColor=white">
+  <img src="https://img.shields.io/badge/Linux-FCC624?style=flat&logo=linux&logoColor=black">
+</p>
 
 ---
 
